@@ -41,7 +41,7 @@ public class Board extends JPanel implements ActionListener
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2);
 		
-		ball = new Ball(B_WIDTH/2, B_HEIGHT/2);
+		ball = new Ball(B_WIDTH/2, B_HEIGHT/2, 5);
 		
 		tickTimer = new Timer(5,this);
 		tickTimer.start();
