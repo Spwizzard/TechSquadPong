@@ -61,9 +61,9 @@ public class Board extends JPanel implements ActionListener
 		
 		
 		g2d.setColor(Color.GREEN);
-				
-		//g2d.fillRect(paddle1.getX(), paddle1.getY(), 10, 70);
-		//g2d.fillRect(paddle2.getX(), paddle2.getY(), 10, 70);
+		
+		g2d.drawImage(paddle1.getImage(), paddle1.getX(), paddle1.getY(), this);
+		g2d.drawImage(paddle2.getImage(), paddle2.getX(), paddle2.getY(), this);
 		
 		g2d.fillOval(ball.getX(), ball.getY(), 25, 25);
 		
@@ -96,6 +96,14 @@ public class Board extends JPanel implements ActionListener
 
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
+			
+			if((key == KeyEvent.VK_W) && (key == KeyEvent.VK_S)) {
+				paddle1.keyPressed(e);
+			}
+			
+			if((key == KeyEvent.VK_UP) && (key == KeyEvent.VK_DOWN)) {
+				paddle2.keyPressed(e);
+			}
 			
 			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
 				paddle1.keyPressed(e);

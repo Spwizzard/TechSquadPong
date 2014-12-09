@@ -21,7 +21,7 @@ public class Paddle {
 			x = 540;
 			y = 300;
 		}
-		paddlePic = new ImageIcon("Paddle");
+		paddlePic = new ImageIcon("Paddle.png");
 		paddleImage = paddlePic.getImage();
 	}
 	
@@ -51,7 +51,7 @@ public class Paddle {
 	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-				
+
 		if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_UP)) {
 			dy = -4;
 		}
