@@ -62,8 +62,8 @@ public class Board extends JPanel implements ActionListener
 		
 		g2d.setColor(Color.GREEN);
 				
-		g2d.fillRect(paddle1.getX(), paddle1.getY(), 10, 70);
-		g2d.fillRect(paddle2.getX(), paddle2.getY(), 10, 70);
+		//g2d.fillRect(paddle1.getX(), paddle1.getY(), 10, 70);
+		//g2d.fillRect(paddle2.getX(), paddle2.getY(), 10, 70);
 		
 		g2d.fillOval(ball.getX(), ball.getY(), 25, 25);
 		
