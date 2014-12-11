@@ -1,8 +1,5 @@
 package pong;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
 public class Base extends JFrame {
@@ -14,7 +11,9 @@ public class Base extends JFrame {
 	}
 
 	public Base() {
-		add(new Board());
+		Board testBoard = new Board();
+		setContentPane(testBoard);
+		testBoard.checkBase = true;
 		setTitle("Pong");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setUndecorated(true);
@@ -22,6 +21,7 @@ public class Base extends JFrame {
 		pack();
 		setVisible(true);
 		setResizable(false);
+		
 		System.out.println(this.getWidth());
 		System.out.println(this.getHeight());
 	}

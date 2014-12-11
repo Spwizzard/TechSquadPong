@@ -1,15 +1,13 @@
 package pong;
 
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 public class Paddle {
 
-	private int x, y, dy;
+	private int x, y;
 	private Image paddleImage;
 	private ImageIcon paddlePic;
 	private boolean PaddleUp, PaddleDown;

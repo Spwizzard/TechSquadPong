@@ -13,11 +13,13 @@ import java.awt.event.KeyEvent;
 import java.util.Date;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener 
 {
-	private boolean victory; 
+
+	private static final long serialVersionUID = 1L;
 	private Paddle paddle1, paddle2;
 	private Ball ball;
 	private Date fpsDate;
@@ -27,6 +29,8 @@ public class Board extends JPanel implements ActionListener
 	private int player1NumberOfWins;
 	private int player2NumberOfWins;
 	private int fps;
+	public boolean checkBase = false;
+	private Base f1;
 	
 	public Board() {
 		addKeyListener(new TAdapter());
@@ -35,7 +39,6 @@ public class Board extends JPanel implements ActionListener
 		setBackground(Color.DARK_GRAY);
 		setDoubleBuffered(true);
 		setPreferredSize(new Dimension(600,600));
-		victory = false;
 		player1NumberOfWins = 0;
 		player2NumberOfWins = 0;	
 		
@@ -44,10 +47,19 @@ public class Board extends JPanel implements ActionListener
 		
 		ball = new Ball(292, 341, 5);
 		
+		if(checkBase) {
+			f1 = ((Base) SwingUtilities.getAncestorOfClass(Base.class, this));
+			if(f1 == null) 
+				System.out.println("Base is null!");
+			B_WIDTH = f1.getWidth();
+			B_HEIGHT = f1.getHeight();
+		}
+		
 		fpsDate = new Date();
 		
 		tickTimer = new Timer(16,this);
 		tickTimer.start();
+		
 	}
 	
 	public void paint(Graphics g){
@@ -76,11 +88,12 @@ public class Board extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		paddle1.move();
 		paddle2.move();
 		repaint();
 		fps++;
-		calculateFPS();
+		//calculateFPS();
 	}
 
 	public void calculateFPS() {
@@ -109,6 +122,9 @@ public class Board extends JPanel implements ActionListener
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			
+			if((key == KeyEvent.VK_ESCAPE)) {
+				
+			}
 			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
 				paddle1.keyPressed(e);
 			}
