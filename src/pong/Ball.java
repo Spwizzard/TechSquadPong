@@ -7,8 +7,8 @@ import javax.swing.ImageIcon;
 public class Ball {
 	
 	private int x, y, dx, dy;
-	private Image paddleImage;
-	private ImageIcon paddlePic;
+	private Image ballImage;
+	private ImageIcon ballPic;
 	private double xComp , YComp;
 	private int magnitude;
 	
@@ -16,8 +16,8 @@ public class Ball {
 		x = X;
 		y = Y;	
 		magnitude = mag;
-		paddlePic = new ImageIcon("Ball");
-		paddleImage = paddlePic.getImage();
+		ballPic = new ImageIcon("Ball.png");
+		ballImage = ballPic.getImage();
 	}
 	
 	public void move() {
@@ -29,7 +29,7 @@ public class Ball {
 	}
 	
 	public Image getImage() {
-		return paddleImage;
+		return ballImage;
 	}
 	
 	public int getX() {
