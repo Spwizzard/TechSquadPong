@@ -37,20 +37,17 @@ public class Board extends JPanel implements ActionListener
 		setPreferredSize(new Dimension(600,600));
 		victory = false;
 		player1NumberOfWins = 0;
-		player2NumberOfWins = 0;
-		B_WIDTH = this.getWidth();
-		B_HEIGHT = this.getHeight();
+		player2NumberOfWins = 0;	
 		
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2);
 		
-		ball = new Ball(B_WIDTH/2, B_HEIGHT/2, 5);
+		ball = new Ball(292, 341, 5);
 		
 		fpsDate = new Date();
 		
 		tickTimer = new Timer(16,this);
 		tickTimer.start();
-
 	}
 	
 	public void paint(Graphics g){
@@ -70,7 +67,7 @@ public class Board extends JPanel implements ActionListener
 		g2d.drawImage(paddle1.getImage(), paddle1.getX(), paddle1.getY(), this);
 		g2d.drawImage(paddle2.getImage(), paddle2.getX(), paddle2.getY(), this);
 		
-		g2d.fillOval(ball.getX(), ball.getY(), 25, 25);
+		g2d.drawImage(ball.getImage(), ball.getX(), ball.getY(), this);
 		
 		
 		Toolkit.getDefaultToolkit().sync();
