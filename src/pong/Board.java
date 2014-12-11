@@ -24,8 +24,7 @@ public class Board extends JPanel implements ActionListener
 	private Ball ball;
 	private Date fpsDate;
 	private Timer tickTimer;
-	private int B_WIDTH;
-	private int B_HEIGHT;
+	private int baseWidth, baseHeight, boardWidth, boardHeight;
 	private int player1NumberOfWins;
 	private int player2NumberOfWins;
 	private int fps;
@@ -46,20 +45,28 @@ public class Board extends JPanel implements ActionListener
 		paddle2 = new Paddle(2);
 		
 		ball = new Ball(292, 341, 5);
-		
-		if(checkBase) {
-			f1 = ((Base) SwingUtilities.getAncestorOfClass(Base.class, this));
-			if(f1 == null) 
-				System.out.println("Base is null!");
-			B_WIDTH = f1.getWidth();
-			B_HEIGHT = f1.getHeight();
-		}
-		
+
 		fpsDate = new Date();
 		
 		tickTimer = new Timer(16,this);
-		tickTimer.start();
 		
+		
+	}
+	
+	public void dimensionCheck() {
+		
+		f1 = (Base) SwingUtilities.getWindowAncestor(this);
+		if(f1 == null) 
+			System.out.println("Base is null!");
+		baseWidth = f1.getWidth();
+		baseHeight = f1.getHeight();
+		boardWidth = this.getWidth();
+		boardHeight = this.getHeight();
+		System.out.println(baseWidth);
+		System.out.println(baseHeight);			
+		System.out.println(boardWidth);
+		System.out.println(boardHeight);
+		checkBase = false;
 	}
 	
 	public void paint(Graphics g){
@@ -88,7 +95,8 @@ public class Board extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		
+		if(checkBase) 
+			dimensionCheck();
 		paddle1.move();
 		paddle2.move();
 		repaint();
@@ -96,6 +104,10 @@ public class Board extends JPanel implements ActionListener
 		//calculateFPS();
 	}
 
+	public void startTimer() {
+		tickTimer.start();
+	}
+	
 	public void calculateFPS() {
 		long sec1Time = new Date().getTime();
 		long fpsTime = fpsDate.getTime();
@@ -105,6 +117,9 @@ public class Board extends JPanel implements ActionListener
 			fps = 0;
 		}
 	}
+	
+	
+	
 	
 	private class TAdapter extends KeyAdapter { 
 

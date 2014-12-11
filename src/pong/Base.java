@@ -14,20 +14,15 @@ public class Base extends JFrame {
 		Board testBoard = new Board();
 		setContentPane(testBoard);
 		testBoard.checkBase = true;
+		//setUndecorated(true);
+		pack();
+		testBoard.startTimer();
 		setTitle("Pong");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setUndecorated(true);
+		
 		//getRootPane().setBorder(BorderFactory.createMatteBorder(50, 50, 50, 50, Color.PINK));
-		pack();
+		
 		setVisible(true);
 		setResizable(false);
-		
-		System.out.println(this.getWidth());
-		System.out.println(this.getHeight());
-	}
-	
-	public void sizes() {
-		System.out.println(this.getWidth());
-		System.out.println(this.getHeight());
 	}
 }
