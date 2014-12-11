@@ -50,7 +50,6 @@ public class Board extends JPanel implements ActionListener
 		
 		tickTimer = new Timer(16,this);
 		
-		
 	}
 	
 	public void dimensionCheck() {
@@ -117,8 +116,6 @@ public class Board extends JPanel implements ActionListener
 			fps = 0;
 		}
 	}
-	
-	
 	
 	
 	private class TAdapter extends KeyAdapter { 
