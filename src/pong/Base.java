@@ -17,5 +17,7 @@ public class Base extends JFrame {
 		pack();
 		setVisible(true);
 		setResizable(false);
+		System.out.println(this.getWidth());
+		System.out.println(this.getHeight());
 	}
 }

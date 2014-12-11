@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -19,11 +20,13 @@ public class Board extends JPanel implements ActionListener
 	private boolean victory; 
 	private Paddle paddle1, paddle2;
 	private Ball ball;
+	private Date fpsDate;
 	private Timer tickTimer;
 	private int B_WIDTH;
 	private int B_HEIGHT;
 	private int player1NumberOfWins;
 	private int player2NumberOfWins;
+	private int fps;
 	
 	public Board() {
 		addKeyListener(new TAdapter());
@@ -43,7 +46,9 @@ public class Board extends JPanel implements ActionListener
 		
 		ball = new Ball(B_WIDTH/2, B_HEIGHT/2, 5);
 		
-		tickTimer = new Timer(5,this);
+		fpsDate = new Date();
+		
+		tickTimer = new Timer(16,this);
 		tickTimer.start();
 
 	}
@@ -77,9 +82,19 @@ public class Board extends JPanel implements ActionListener
 		paddle1.move();
 		paddle2.move();
 		repaint();
+		fps++;
+		calculateFPS();
 	}
 
-
+	public void calculateFPS() {
+		long sec1Time = new Date().getTime();
+		long fpsTime = fpsDate.getTime();
+		if(sec1Time - fpsTime >= 1000) {
+			System.out.println(fps + "   " + (sec1Time - fpsTime));
+			fpsDate = new Date();
+			fps = 0;
+		}
+	}
 	
 	private class TAdapter extends KeyAdapter { 
 
@@ -96,14 +111,6 @@ public class Board extends JPanel implements ActionListener
 
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
-			
-			if((key == KeyEvent.VK_W) && (key == KeyEvent.VK_S)) {
-				paddle1.keyPressed(e);
-			}
-			
-			if((key == KeyEvent.VK_UP) && (key == KeyEvent.VK_DOWN)) {
-				paddle2.keyPressed(e);
-			}
 			
 			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
 				paddle1.keyPressed(e);

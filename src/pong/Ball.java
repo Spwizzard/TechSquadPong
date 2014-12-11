@@ -7,21 +7,28 @@ import javax.swing.ImageIcon;
 public class Ball {
 	
 	private int x, y, dx, dy;
-	private Image paddleImage;
-	private ImageIcon paddlePic;
-	private double xComp , YComp;
+	private Image ballImage;
+	private double XComp , YComp, angle;
 	private int magnitude;
 	
 	public Ball(int X, int Y, int mag) {
 		x = X;
 		y = Y;	
 		magnitude = mag;
-		paddlePic = new ImageIcon("Ball");
-		paddleImage = paddlePic.getImage();
+		XComp = 3;
+		YComp = 3;
+		ImageIcon ballPic = new ImageIcon("Ball");
+		ballImage = ballPic.getImage();
+		move();
 	}
 	
 	public void move() {
-		
+		calculateVector();
+	}
+	
+	public void calculateVector() {
+		angle = Math.atan((YComp/XComp));
+		System.out.println(angle);
 	}
 	
 	public void incrementMag() {
@@ -29,7 +36,7 @@ public class Ball {
 	}
 	
 	public Image getImage() {
-		return paddleImage;
+		return ballImage;
 	}
 	
 	public int getX() {
