@@ -44,7 +44,7 @@ public class Board extends JPanel implements ActionListener
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2);
 		
-		ball = new Ball(292, 341, 5);
+		ball = new Ball(292, 341, 2 , 45);
 
 		fpsDate = new Date();
 		
@@ -85,7 +85,7 @@ public class Board extends JPanel implements ActionListener
 		g2d.drawImage(paddle1.getImage(), paddle1.getX(), paddle1.getY(), this);
 		g2d.drawImage(paddle2.getImage(), paddle2.getX(), paddle2.getY(), this);
 		
-		g2d.drawImage(ball.getImage(), ball.getX(), ball.getY(), this);
+		g2d.drawImage(ball.getImage(), (int)Math.round(ball.getX()), (int)Math.round(ball.getY()), this);
 		
 		
 		Toolkit.getDefaultToolkit().sync();
@@ -98,6 +98,7 @@ public class Board extends JPanel implements ActionListener
 			dimensionCheck();
 		paddle1.move();
 		paddle2.move();
+		ball.move();
 		repaint();
 		fps++;
 		//calculateFPS();

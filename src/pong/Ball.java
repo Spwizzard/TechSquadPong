@@ -6,27 +6,35 @@ import javax.swing.ImageIcon;
 
 public class Ball {
 	
-	private int x, y, dx, dy;
+	final private double radToDeg = (180/Math.PI);
+	private double x, y;
 	private Image ballImage;
 	private double XComp , YComp, angle;
 	private int magnitude;
-	public Ball(int X, int Y, int mag) {
+	public Ball(double X, double Y, int mag , double ang) {
 		x = X;
 		y = Y;	
 		magnitude = mag;
-		XComp = 3;
-		YComp = 3;
 		ballImage = new ImageIcon("Ball.png").getImage();
+		setAngle(ang);
 		move();
 	}
 	
 	public void move() {
 		calculateVector();
+		x += XComp;
+		y += -YComp;
 	}
 	
 	public void calculateVector() {
-		angle = Math.atan((YComp/XComp));
-		System.out.println(angle);
+		
+		XComp = magnitude * Math.cos(angle);
+		YComp = magnitude * Math.sin(angle);
+	}
+	
+	public void setAngle(double degAngle)  {
+		angle = degAngle / radToDeg;
+		System.out.println((int)(angle * radToDeg));	
 	}
 	
 	public void incrementMag() {
@@ -37,11 +45,11 @@ public class Ball {
 		return ballImage;
 	}
 	
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
