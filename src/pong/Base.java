@@ -11,12 +11,12 @@ public class Base extends JFrame {
 	}
 
 	public Base() {
-		Board testBoard = new Board();
-		setContentPane(testBoard);
-		testBoard.checkBase = true;
+		Board board = new Board();
+		setContentPane(board);
+		board.checkBase = true;
 		//setUndecorated(true);
 		pack();
-		testBoard.startTimer();
+		board.startTimer();
 		setTitle("Pong");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

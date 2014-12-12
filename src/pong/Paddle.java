@@ -1,19 +1,20 @@
 package pong;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 
 public class Paddle {
 
-	private int x, y;
+	private int x, y, width, height;
 	private Image paddleImage;
 	private ImageIcon paddlePic;
 	private boolean PaddleUp, PaddleDown;
 	
 	
-	public Paddle(int whichPaddle) {
+	public Paddle(int whichPaddle , int wid, int hei) {
 		if(whichPaddle == 1) {
 			x = 50;
 			y = 300;
@@ -22,6 +23,9 @@ public class Paddle {
 			x = 540;
 			y = 300;
 		}
+		width = wid;
+		height = hei;
+		
 		paddlePic = new ImageIcon("Paddle.png");
 		paddleImage = paddlePic.getImage();
 		
@@ -52,6 +56,10 @@ public class Paddle {
 		if(y > 530) {
 			y = 530;
 		}
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(x, y, width, height);
 	}
 	
 	public Image getImage() {

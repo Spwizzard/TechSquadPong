@@ -63,10 +63,10 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
-		paddle1 = new Paddle(1);
-		paddle2 = new Paddle(2); 
+		paddle1 = new Paddle(1 , 10, 70);
+		paddle2 = new Paddle(2 , 10, 70); 
 		
-		ball = new Ball(292, 341, 2 , 45);
+		ball = new Ball(292, 341, 30 , (int)(Math.random() * 360));
 	}
 	
 	public void paint(Graphics g){
@@ -102,11 +102,15 @@ public class Board extends JPanel implements ActionListener
 		paddle1.move();
 		paddle2.move();
 		ball.move();
+		checkCollisions();
 		repaint();
 		fps++;
 		//calculateFPS();
 	}
 
+	public void checkCollisions() {
+	}
+	
 	public void startTimer() {
 		tickTimer.start();
 	}
