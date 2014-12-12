@@ -40,14 +40,8 @@ public class Board extends JPanel implements ActionListener
 		setPreferredSize(new Dimension(600,600));
 		player1NumberOfWins = 0;
 		player2NumberOfWins = 0;	
-		
-		paddle1 = new Paddle(1);
-		paddle2 = new Paddle(2);
-		
-		ball = new Ball(292, 341, 2 , 45);
 
 		fpsDate = new Date();
-		
 		tickTimer = new Timer(16,this);
 		
 	}
@@ -57,18 +51,26 @@ public class Board extends JPanel implements ActionListener
 		f1 = (Base) SwingUtilities.getWindowAncestor(this);
 		if(f1 == null) 
 			System.out.println("Base is null!");
+		
 		baseWidth = f1.getWidth();
 		baseHeight = f1.getHeight();
 		boardWidth = this.getWidth();
 		boardHeight = this.getHeight();
-		System.out.println(baseWidth);
-		System.out.println(baseHeight);			
-		System.out.println(boardWidth);
-		System.out.println(boardHeight);
+		
+		System.out.println(baseWidth + " baseWidth");
+		System.out.println(baseHeight + " baseHeight");			
+		System.out.println(boardWidth + " boardWidth");
+		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
+		
+		paddle1 = new Paddle(1);
+		paddle2 = new Paddle(2); 
+		
+		ball = new Ball(292, 341, 2 , 45);
 	}
 	
 	public void paint(Graphics g){
+		
 		super.paint(g);
 		
 		Graphics2D g2d = (Graphics2D)g;
@@ -81,11 +83,12 @@ public class Board extends JPanel implements ActionListener
 		
 		
 		g2d.setColor(Color.GREEN);
-		
-		g2d.drawImage(paddle1.getImage(), paddle1.getX(), paddle1.getY(), this);
-		g2d.drawImage(paddle2.getImage(), paddle2.getX(), paddle2.getY(), this);
-		
-		g2d.drawImage(ball.getImage(), (int)Math.round(ball.getX()), (int)Math.round(ball.getY()), this);
+		if(paddle1 != null)
+			g2d.drawImage(paddle1.getImage(), paddle1.getX(), paddle1.getY(), this);
+		if(paddle2 != null)
+			g2d.drawImage(paddle2.getImage(), paddle2.getX(), paddle2.getY(), this);
+		if(ball != null)
+			g2d.drawImage(ball.getImage(), (int)Math.round(ball.getX()), (int)Math.round(ball.getY()), this);
 		
 		
 		Toolkit.getDefaultToolkit().sync();
