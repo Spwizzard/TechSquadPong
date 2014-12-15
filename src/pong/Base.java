@@ -14,7 +14,7 @@ public class Base extends JFrame {
 		Board board = new Board();
 		setContentPane(board);
 		board.checkBase = true;
-		//setUndecorated(true);
+		setUndecorated(true);
 		pack();
 		board.startTimer();
 		setTitle("Pong");

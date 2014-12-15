@@ -64,7 +64,9 @@ public class Board extends JPanel implements ActionListener
 		checkBase = false;
 		
 		paddle1 = new Paddle(1 , 10, 70);
-		paddle2 = new Paddle(2 , 10, 70); 
+		paddle2 =
+new Paddle(2 , 10, 70); 
+		
 		
 		ball = new Ball(292, 341, 10 , (int)(Math.random() * 360));
 	}
@@ -77,7 +79,7 @@ public class Board extends JPanel implements ActionListener
 		
 		g2d.setColor(Color.WHITE);
 		g2d.drawRect(0, 0, 599, 99);
-		g2d.setFont(new Font("Courier New", Font.BOLD, 100));
+		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
 		g2d.drawString("" + player1NumberOfWins, 50, 80);
 		g2d.drawString("" + player2NumberOfWins, 500, 80);
 		
@@ -143,7 +145,7 @@ public class Board extends JPanel implements ActionListener
 			int key = e.getKeyCode();
 			
 			if((key == KeyEvent.VK_ESCAPE)) {
-				
+				System.exit(key);
 			}
 			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
 				paddle1.keyPressed(e);
