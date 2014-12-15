@@ -66,7 +66,7 @@ public class Board extends JPanel implements ActionListener
 		paddle1 = new Paddle(1 , 10, 70);
 		paddle2 = new Paddle(2 , 10, 70); 
 		
-		ball = new Ball(292, 341, 30 , (int)(Math.random() * 360));
+		ball = new Ball(292, 341, 10 , (int)(Math.random() * 360));
 	}
 	
 	public void paint(Graphics g){
