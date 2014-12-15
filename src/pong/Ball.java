@@ -6,27 +6,75 @@ import javax.swing.ImageIcon;
 
 public class Ball {
 	
-	private int x, y, dx, dy;
+	final private double radToDeg = (180/Math.PI);
+	private double x, y, xRight, yBottom;
 	private Image ballImage;
 	private double XComp , YComp, angle;
 	private int magnitude;
-	public Ball(int X, int Y, int mag) {
+	public Ball(double X, double Y, int mag , double ang) {
 		x = X;
-		y = Y;	
+		y = Y;
+		xRight = x + 17;
+		yBottom = y + 17;
 		magnitude = mag;
-		XComp = 3;
-		YComp = 3;
 		ballImage = new ImageIcon("Ball.png").getImage();
-		move();
+		setAngle((ang / radToDeg));
 	}
 	
 	public void move() {
 		calculateVector();
+		x += XComp;
+		xRight += XComp;
+		y += -YComp;
+		yBottom += -YComp;
+		
+		if(y < 100) {
+			y = 100;
+			angle = -angle;
+			setAngle(angle);
+			calculateVector();
+		}
+		if(yBottom > 600) {
+			y = 583;
+			angle = -angle;
+			setAngle(angle);
+			calculateVector();
+		}
+		if(x < 0) {
+			x = 0;
+			if(angle > 0)
+				angle = -angle + Math.PI;
+			else if(angle < 0) {
+				angle = -angle - Math.PI;
+			}
+			else
+				System.out.println("wat");
+			setAngle(angle);
+			calculateVector();
+		}
+		if(xRight > 600) {
+			x = 583;
+			if(angle >= 0)
+				angle = -angle + Math.PI;
+			else if(angle < 0) {
+				angle = -angle - Math.PI;
+			}
+			else
+				System.out.println("wat");
+			setAngle(angle);
+			calculateVector();
+		}
 	}
 	
 	public void calculateVector() {
-		angle = Math.atan((YComp/XComp));
-		System.out.println(angle);
+		
+		XComp = magnitude * Math.cos(angle);
+		YComp = magnitude * Math.sin(angle);
+	}
+	
+	public void setAngle(double radAngle)  {
+		angle = radAngle;
+		System.out.println((int)(radAngle * radToDeg));	
 	}
 	
 	public void incrementMag() {
@@ -37,11 +85,11 @@ public class Ball {
 		return ballImage;
 	}
 	
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 	
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
