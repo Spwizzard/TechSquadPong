@@ -18,10 +18,7 @@ public class Base extends JFrame {
 		pack();
 		board.startTimer();
 		setTitle("Pong");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		//getRootPane().setBorder(BorderFactory.createMatteBorder(50, 50, 50, 50, Color.PINK));
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		setVisible(true);
 		setResizable(false);
 	}
