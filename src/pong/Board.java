@@ -37,7 +37,7 @@ public class Board extends JPanel implements ActionListener
 		setVisible(true);
 		setBackground(Color.DARK_GRAY);
 		setDoubleBuffered(true);
-		setPreferredSize(new Dimension(600,600));
+		setPreferredSize(new Dimension(601,601));
 		player1NumberOfWins = 0;
 		player2NumberOfWins = 0;	
 
@@ -64,11 +64,10 @@ public class Board extends JPanel implements ActionListener
 		checkBase = false;
 		
 		paddle1 = new Paddle(1 , 10, 70);
-		paddle2 =
-new Paddle(2 , 10, 70); 
+		paddle2 = new Paddle(2 , 10, 70); 
 		
 		
-		ball = new Ball(292, 341, 10 , (int)(Math.random() * 360));
+		ball = new Ball(292, 342, 10 , (int)(Math.random() * 360));
 	}
 	
 	public void paint(Graphics g){
@@ -78,7 +77,7 @@ new Paddle(2 , 10, 70);
 		Graphics2D g2d = (Graphics2D)g;
 		
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(0, 0, 599, 99);
+		g2d.drawRect(0, 0, 600, 100);
 		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
 		g2d.drawString("" + player1NumberOfWins, 50, 80);
 		g2d.drawString("" + player2NumberOfWins, 500, 80);
