@@ -116,14 +116,19 @@ public class Board extends JPanel implements ActionListener
 		double angle = ball.getAngle();
 		
 		if(ballRect.intersects(paddle1Rect) || (ballRect.intersects(paddle2Rect))) {
-			if(angle >= 0)
-				angle = -angle + Math.PI;
-			else if(angle < 0) {
-				angle = -angle - Math.PI;
-			}
-			else
-				System.out.println("wat");
+			double yBallCenter = ball.getY() + 8;
+			double yPaddleCenter = 0;
+			double angleMultiplier = 1.5;
+			if(ballRect.intersects(paddle1Rect)) {
+				yPaddleCenter = paddle1.getY() + 34;
+				angle = (yPaddleCenter - yBallCenter) * Math.PI / 180 * angleMultiplier;
+			}	
+			if(ballRect.intersects(paddle2Rect)) {
+				yPaddleCenter = paddle2.getY() + 34;	
+				angle = Math.PI - (yPaddleCenter - yBallCenter) * Math.PI / 180 * angleMultiplier;
+			}	
 			ball.setAngle(angle);
+			ball.incrementMag();
 			ball.calculateVector();
 			if(ballRect.intersects(paddle1Rect))
 				ball.setX(61);
@@ -133,7 +138,9 @@ public class Board extends JPanel implements ActionListener
 	}
 	
 	public void setBall() {
-		ball = new Ball(292, 341, 5 , (int)(Math.random() * 360));
+		
+		int[] angleMults = {0,3,4,7};
+		ball = new Ball(292, 341, 4 , ((int)(Math.random() * 45) + angleMults[(int)(Math.random() * 4)] * 45));
 	}
 	
 	public void startTimer() {
