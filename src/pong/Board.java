@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,11 +64,18 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
+<<<<<<< HEAD
 		paddle1 = new Paddle(1 , 10, 70);
 		paddle2 = new Paddle(2 , 10, 70); 
 		
 		
 		ball = new Ball(292, 342, 5 , (int)(Math.random() * 360));
+=======
+		paddle1 = new Paddle(1);
+		paddle2 = new Paddle(2); 
+		
+		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
+>>>>>>> origin/PaddleCollision
 	}
 	
 	public void paint(Graphics g){
@@ -110,6 +118,30 @@ public class Board extends JPanel implements ActionListener
 	}
 
 	public void checkCollisions() {
+		Rectangle ballRect = ball.getBounds();
+		Rectangle paddle1Rect = paddle1.getBounds();
+		Rectangle paddle2Rect = paddle2.getBounds();
+		double angle = ball.getAngle();
+		
+		if(ballRect.intersects(paddle1Rect) || (ballRect.intersects(paddle2Rect))) {
+			if(angle >= 0)
+				angle = -angle + Math.PI;
+			else if(angle < 0) {
+				angle = -angle - Math.PI;
+			}
+			else
+				System.out.println("wat");
+			ball.setAngle(angle);
+			ball.calculateVector();
+			if(ballRect.intersects(paddle1Rect))
+				ball.setX(61);
+			if(ballRect.intersects(paddle2Rect))
+				ball.setX(522);
+		}
+	}
+	
+	public void resetBall() {
+		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
 	}
 	
 	public void startTimer() {
@@ -129,19 +161,12 @@ public class Board extends JPanel implements ActionListener
 	
 	private class TAdapter extends KeyAdapter { 
 
-		public void keyReleased(KeyEvent e) {
-			int key = e.getKeyCode();
-			
-			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
-				paddle1.keyReleased(e);
-			}
-			if((key == KeyEvent.VK_UP) || (key == KeyEvent.VK_DOWN)) {
-				paddle2.keyReleased(e);
-			}			
-		}
-
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
+			
+			if(key == KeyEvent.VK_P) {
+				resetBall();
+			}
 			
 			if((key == KeyEvent.VK_ESCAPE)) {
 				System.exit(key);
@@ -153,6 +178,17 @@ public class Board extends JPanel implements ActionListener
 				paddle2.keyPressed(e);
 			}		
 		}
+		
+		public void keyReleased(KeyEvent e) {
+			int key = e.getKeyCode();
+			
+			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
+				paddle1.keyReleased(e);
+			}
+			if((key == KeyEvent.VK_UP) || (key == KeyEvent.VK_DOWN)) {
+				paddle2.keyReleased(e);
+			}			
+		}	
 	}
 }
 
