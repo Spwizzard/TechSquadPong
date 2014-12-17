@@ -10,24 +10,22 @@ public class Paddle {
 
 	private int x, y, width, height;
 	private Image paddleImage;
-	private ImageIcon paddlePic;
 	private boolean PaddleUp, PaddleDown;
 	
 	
-	public Paddle(int whichPaddle , int wid, int hei) {
+	public Paddle(int whichPaddle) {
 		if(whichPaddle == 1) {
-			x = 50;
-			y = 300;
+			x = 51;
+			y = 316;
 		}
 		else {
-			x = 540;
-			y = 300;
+			x = 541;
+			y = 316;
 		}
-		width = wid;
-		height = hei;
 		
-		paddlePic = new ImageIcon("Paddle.png");
-		paddleImage = paddlePic.getImage();
+		paddleImage = new ImageIcon("Paddle.png").getImage();
+		width = paddleImage.getWidth(null);
+		height = paddleImage.getHeight(null);
 		
 		PaddleUp = false;
 		PaddleDown = false;		

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +38,7 @@ public class Board extends JPanel implements ActionListener
 		setVisible(true);
 		setBackground(Color.DARK_GRAY);
 		setDoubleBuffered(true);
-		setPreferredSize(new Dimension(600,600));
+		setPreferredSize(new Dimension(601,601));
 		player1NumberOfWins = 0;
 		player2NumberOfWins = 0;	
 
@@ -63,12 +64,10 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
-		paddle1 = new Paddle(1 , 10, 70);
-		paddle2 =
-new Paddle(2 , 10, 70); 
+		paddle1 = new Paddle(1);
+		paddle2 = new Paddle(2); 
 		
-		
-		ball = new Ball(292, 341, 10 , (int)(Math.random() * 360));
+		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
 	}
 	
 	public void paint(Graphics g){
@@ -78,7 +77,7 @@ new Paddle(2 , 10, 70);
 		Graphics2D g2d = (Graphics2D)g;
 		
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(0, 0, 599, 99);
+		g2d.drawRect(0, 0, 600, 100);
 		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
 		g2d.drawString("" + player1NumberOfWins, 50, 80);
 		g2d.drawString("" + player2NumberOfWins, 500, 80);
@@ -111,6 +110,30 @@ new Paddle(2 , 10, 70);
 	}
 
 	public void checkCollisions() {
+		Rectangle ballRect = ball.getBounds();
+		Rectangle paddle1Rect = paddle1.getBounds();
+		Rectangle paddle2Rect = paddle2.getBounds();
+		double angle = ball.getAngle();
+		
+		if(ballRect.intersects(paddle1Rect) || (ballRect.intersects(paddle2Rect))) {
+			if(angle >= 0)
+				angle = -angle + Math.PI;
+			else if(angle < 0) {
+				angle = -angle - Math.PI;
+			}
+			else
+				System.out.println("wat");
+			ball.setAngle(angle);
+			ball.calculateVector();
+			if(ballRect.intersects(paddle1Rect))
+				ball.setX(61);
+			if(ballRect.intersects(paddle2Rect))
+				ball.setX(522);
+		}
+	}
+	
+	public void resetBall() {
+		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
 	}
 	
 	public void startTimer() {
@@ -130,19 +153,12 @@ new Paddle(2 , 10, 70);
 	
 	private class TAdapter extends KeyAdapter { 
 
-		public void keyReleased(KeyEvent e) {
-			int key = e.getKeyCode();
-			
-			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
-				paddle1.keyReleased(e);
-			}
-			if((key == KeyEvent.VK_UP) || (key == KeyEvent.VK_DOWN)) {
-				paddle2.keyReleased(e);
-			}			
-		}
-
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
+			
+			if(key == KeyEvent.VK_P) {
+				resetBall();
+			}
 			
 			if((key == KeyEvent.VK_ESCAPE)) {
 				System.exit(key);
@@ -154,6 +170,17 @@ new Paddle(2 , 10, 70);
 				paddle2.keyPressed(e);
 			}		
 		}
+		
+		public void keyReleased(KeyEvent e) {
+			int key = e.getKeyCode();
+			
+			if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_S)) { 
+				paddle1.keyReleased(e);
+			}
+			if((key == KeyEvent.VK_UP) || (key == KeyEvent.VK_DOWN)) {
+				paddle2.keyReleased(e);
+			}			
+		}	
 	}
 }
 

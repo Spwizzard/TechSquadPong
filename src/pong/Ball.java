@@ -1,16 +1,18 @@
 package pong;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
 public class Ball {
 	
 	final private double radToDeg = (180/Math.PI);
+	final private double degToRad = (Math.PI/180);
 	private double x, y, xRight, yBottom;
 	private Image ballImage;
 	private double XComp , YComp, angle;
-	private int magnitude;
+	private int magnitude, width, height;
 	public Ball(double X, double Y, int mag , double ang) {
 		x = X;
 		y = Y;
@@ -18,7 +20,9 @@ public class Ball {
 		yBottom = y + 17;
 		magnitude = mag;
 		ballImage = new ImageIcon("Ball.png").getImage();
-		setAngle((ang / radToDeg));
+		width = ballImage.getWidth(null);
+		height = ballImage.getHeight(null);
+		setAngle((ang * degToRad));
 	}
 	
 	public void move() {
@@ -42,27 +46,11 @@ public class Ball {
 		}
 		if(x < 0) {
 			x = 0;
-			if(angle > 0)
-				angle = -angle + Math.PI;
-			else if(angle < 0) {
-				angle = -angle - Math.PI;
-			}
-			else
-				System.out.println("wat");
-			setAngle(angle);
-			calculateVector();
+			magnitude = 0;
 		}
 		if(xRight > 600) {
 			x = 583;
-			if(angle >= 0)
-				angle = -angle + Math.PI;
-			else if(angle < 0) {
-				angle = -angle - Math.PI;
-			}
-			else
-				System.out.println("wat");
-			setAngle(angle);
-			calculateVector();
+			magnitude = 0;
 		}
 	}
 	
@@ -77,6 +65,10 @@ public class Ball {
 		System.out.println((int)(radAngle * radToDeg));	
 	}
 	
+	public double getAngle() {
+		return angle;
+	}
+	
 	public void incrementMag() {
 		magnitude++;
 	}
@@ -89,9 +81,16 @@ public class Ball {
 		return x;
 	}
 	
+	public void setX(double X) {
+		x = X;
+	}
+	
 	public double getY() {
 		return y;
 	}
 
+	public Rectangle getBounds() {
+		return new Rectangle((int)x, (int)y, width, height);
+	}
 	
 }
