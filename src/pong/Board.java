@@ -64,10 +64,18 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
+<<<<<<< HEAD
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2); 
 		
 		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
+=======
+		paddle1 = new Paddle(1 , 10, 70);
+		paddle2 = new Paddle(2 , 10, 70); 
+		
+		
+		ball = new Ball(292, 342, 10 , (int)(Math.random() * 360));
+>>>>>>> FETCH_HEAD
 	}
 	
 	public void paint(Graphics g){
