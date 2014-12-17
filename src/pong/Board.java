@@ -64,18 +64,10 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
-<<<<<<< HEAD
+
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2); 
-		
-		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
-=======
-		paddle1 = new Paddle(1 , 10, 70);
-		paddle2 = new Paddle(2 , 10, 70); 
-		
-		
-		ball = new Ball(292, 342, 10 , (int)(Math.random() * 360));
->>>>>>> FETCH_HEAD
+		setBall(); 
 	}
 	
 	public void paint(Graphics g){
@@ -87,8 +79,8 @@ public class Board extends JPanel implements ActionListener
 		g2d.setColor(Color.WHITE);
 		g2d.drawRect(0, 0, 600, 100);
 		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
-		g2d.drawString("" + player1NumberOfWins, 50, 80);
-		g2d.drawString("" + player2NumberOfWins, 500, 80);
+		g2d.drawString("" + player1NumberOfWins, 80, 82);
+		g2d.drawString("" + player2NumberOfWins, 460, 82);
 		
 		
 		g2d.setColor(Color.GREEN);
@@ -140,8 +132,8 @@ public class Board extends JPanel implements ActionListener
 		}
 	}
 	
-	public void resetBall() {
-		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
+	public void setBall() {
+		ball = new Ball(292, 341, 5 , (int)(Math.random() * 360));
 	}
 	
 	public void startTimer() {
@@ -165,7 +157,7 @@ public class Board extends JPanel implements ActionListener
 			int key = e.getKeyCode();
 			
 			if(key == KeyEvent.VK_P) {
-				resetBall();
+				setBall();
 			}
 			
 			if((key == KeyEvent.VK_ESCAPE)) {
