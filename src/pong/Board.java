@@ -64,7 +64,7 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
-		ball = new Ball(292, 342, 5 , (int)(Math.random() * 360));
+		setBall();
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2); 
 	}
@@ -131,8 +131,8 @@ public class Board extends JPanel implements ActionListener
 		}
 	}
 	
-	public void resetBall() {
-		ball = new Ball(292, 341, 3 , (int)(Math.random() * 360));
+	public void setBall() {
+		ball = new Ball(292, 341, 5 , (int)(Math.random() * 360));
 	}
 	
 	public void startTimer() {
@@ -156,7 +156,7 @@ public class Board extends JPanel implements ActionListener
 			int key = e.getKeyCode();
 			
 			if(key == KeyEvent.VK_P) {
-				resetBall();
+				setBall();
 			}
 			
 			if((key == KeyEvent.VK_ESCAPE)) {
