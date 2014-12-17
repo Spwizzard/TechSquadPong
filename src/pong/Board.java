@@ -67,7 +67,7 @@ public class Board extends JPanel implements ActionListener
 		paddle2 = new Paddle(2 , 10, 70); 
 		
 		
-		ball = new Ball(292, 342, 10 , (int)(Math.random() * 360));
+		ball = new Ball(292, 342, 5 , (int)(Math.random() * 360));
 	}
 	
 	public void paint(Graphics g){
@@ -79,8 +79,8 @@ public class Board extends JPanel implements ActionListener
 		g2d.setColor(Color.WHITE);
 		g2d.drawRect(0, 0, 600, 100);
 		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
-		g2d.drawString("" + player1NumberOfWins, 50, 80);
-		g2d.drawString("" + player2NumberOfWins, 500, 80);
+		g2d.drawString("" + player1NumberOfWins, 80, 82);
+		g2d.drawString("" + player2NumberOfWins, 460, 82);
 		
 		
 		g2d.setColor(Color.GREEN);
