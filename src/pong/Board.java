@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Date;
-
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -26,8 +25,7 @@ public class Board extends JPanel implements ActionListener
 	private Date fpsDate;
 	private Timer tickTimer;
 	private int baseWidth, baseHeight, boardWidth, boardHeight;
-	private int player1NumberOfWins;
-	private int player2NumberOfWins;
+	private int player1NumberOfWins, player2NumberOfWins;
 	private int fps;
 	public boolean checkBase = false;
 	private Base f1;
@@ -39,9 +37,9 @@ public class Board extends JPanel implements ActionListener
 		setBackground(Color.DARK_GRAY);
 		setDoubleBuffered(true);
 		setPreferredSize(new Dimension(801,601));
+		
 		player1NumberOfWins = 0;
 		player2NumberOfWins = 0;	
-		
 		fpsDate = new Date();
 		tickTimer = new Timer(16,this);
 		
@@ -52,7 +50,6 @@ public class Board extends JPanel implements ActionListener
 		f1 = (Base) SwingUtilities.getWindowAncestor(this);
 		if(f1 == null) 
 			System.out.println("Base is null!");
-		
 		baseWidth = f1.getWidth();
 		baseHeight = f1.getHeight();
 		boardWidth = this.getWidth();
@@ -64,14 +61,12 @@ public class Board extends JPanel implements ActionListener
 		System.out.println(boardHeight + " boardHeight");
 		checkBase = false;
 		
-
 		paddle1 = new Paddle(1);
 		paddle2 = new Paddle(2); 
 		setBall(); 
 	}
 	
 	public void paint(Graphics g){
-		
 		super.paint(g);
 		
 		Graphics2D g2d = (Graphics2D)g;
@@ -82,8 +77,6 @@ public class Board extends JPanel implements ActionListener
 		g2d.drawString("" + player1NumberOfWins, 80, 82);
 		g2d.drawString("" + player2NumberOfWins, 660, 82);
 		
-		
-		g2d.setColor(Color.GREEN);
 		if(paddle1 != null)
 			g2d.drawImage(paddle1.getImage(), paddle1.getX(), paddle1.getY(), this);
 		if(paddle2 != null)
@@ -91,13 +84,11 @@ public class Board extends JPanel implements ActionListener
 		if(ball != null)
 			g2d.drawImage(ball.getImage(), (int)Math.round(ball.getX()), (int)Math.round(ball.getY()), this);
 		
-		
 		Toolkit.getDefaultToolkit().sync();
 		g.dispose();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		
 		if(checkBase) 
 			dimensionCheck();
 		paddle1.move();
@@ -134,6 +125,7 @@ public class Board extends JPanel implements ActionListener
 			ball.setAngle(angle);
 			ball.incrementMag();
 			ball.calculateVector();
+			
 			if(ballRect.intersects(paddle1Rect))
 				ball.setX(61);
 			if(ballRect.intersects(paddle2Rect))
@@ -142,7 +134,6 @@ public class Board extends JPanel implements ActionListener
 	}
 	
 	public void setBall() {
-		
 		int[] angleMults = {0,3,4,7};
 		ball = new Ball(392, 342, 4 , ((int)(Math.random() * 45) + angleMults[(int)(Math.random() * 4)] * 45));
 	}
@@ -163,14 +154,12 @@ public class Board extends JPanel implements ActionListener
 	
 	
 	private class TAdapter extends KeyAdapter { 
-
 		public void keyPressed(KeyEvent e) {
 			int key = e.getKeyCode();
 			
 			if(key == KeyEvent.VK_P) {
 				setBall();
 			}
-			
 			if((key == KeyEvent.VK_ESCAPE)) {
 				System.exit(key);
 			}

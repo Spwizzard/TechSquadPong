@@ -24,6 +24,7 @@ public class Paddle {
 		}
 		
 		paddleImage = new ImageIcon("Paddle.png").getImage();
+		
 		width = paddleImage.getWidth(null);
 		height = paddleImage.getHeight(null);
 		
@@ -50,7 +51,6 @@ public class Paddle {
 		if(y < 100) {
 			y = 100;
 		}
-		
 		if(y > 530) {
 			y = 530;
 		}
@@ -78,7 +78,6 @@ public class Paddle {
 		if((key == KeyEvent.VK_W) || (key == KeyEvent.VK_UP)) {
 			PaddleUp = true;
 		}
-		
 		if((key == KeyEvent.VK_S) || (key == KeyEvent.VK_DOWN)) {
 			PaddleDown = true;
 		}

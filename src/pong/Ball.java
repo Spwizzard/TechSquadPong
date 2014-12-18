@@ -31,7 +31,7 @@ public class Ball {
 		xRight += XComp;
 		y += -YComp;
 		yBottom += -YComp;
-		
+
 		if(y < 100) {
 			y = 100;
 			angle = -angle;
@@ -55,7 +55,6 @@ public class Ball {
 	}
 	
 	public void calculateVector() {
-		
 		XComp = magnitude * Math.cos(angle);
 		YComp = magnitude * Math.sin(angle);
 	}
