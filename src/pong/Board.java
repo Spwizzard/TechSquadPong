@@ -135,7 +135,7 @@ public class Board extends JPanel implements ActionListener
 	
 	public void setBall() {
 		int[] angleMults = {0,3,4,7};
-		ball = new Ball(392, 342, 4 , ((int)(Math.random() * 45) + angleMults[(int)(Math.random() * 4)] * 45));
+		ball = new Ball(392, 342, 5 , ((int)(Math.random() * 45) + angleMults[(int)(Math.random() * 4)] * 45));
 	}
 	
 	public void startTimer() {
@@ -159,6 +159,8 @@ public class Board extends JPanel implements ActionListener
 			
 			if(key == KeyEvent.VK_P) {
 				setBall();
+				player1NumberOfWins = 0;
+				player2NumberOfWins = 0;
 			}
 			if((key == KeyEvent.VK_ESCAPE)) {
 				System.exit(key);
