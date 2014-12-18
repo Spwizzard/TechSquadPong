@@ -16,6 +16,7 @@ public class Base extends JFrame {
 		board.checkBase = true;
 		setUndecorated(true);
 		pack();
+		setLocationRelativeTo(null);
 		board.startTimer();
 		setTitle("Pong");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		

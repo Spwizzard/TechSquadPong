@@ -19,7 +19,7 @@ public class Paddle {
 			y = 316;
 		}
 		else {
-			x = 541;
+			x = 741;
 			y = 316;
 		}
 		

@@ -38,10 +38,10 @@ public class Board extends JPanel implements ActionListener
 		setVisible(true);
 		setBackground(Color.DARK_GRAY);
 		setDoubleBuffered(true);
-		setPreferredSize(new Dimension(601,601));
+		setPreferredSize(new Dimension(801,601));
 		player1NumberOfWins = 0;
 		player2NumberOfWins = 0;	
-
+		
 		fpsDate = new Date();
 		tickTimer = new Timer(16,this);
 		
@@ -77,10 +77,10 @@ public class Board extends JPanel implements ActionListener
 		Graphics2D g2d = (Graphics2D)g;
 		
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(0, 0, 600, 100);
+		g2d.drawRect(0, 0, 800, 100);
 		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
 		g2d.drawString("" + player1NumberOfWins, 80, 82);
-		g2d.drawString("" + player2NumberOfWins, 460, 82);
+		g2d.drawString("" + player2NumberOfWins, 660, 82);
 		
 		
 		g2d.setColor(Color.GREEN);
@@ -119,28 +119,32 @@ public class Board extends JPanel implements ActionListener
 			double yBallCenter = ball.getY() + 8;
 			double yPaddleCenter = 0;
 			double angleMultiplier = 1.5;
+			
 			if(ballRect.intersects(paddle1Rect)) {
 				yPaddleCenter = paddle1.getY() + 34;
 				angle = (yPaddleCenter - yBallCenter) * Math.PI / 180 * angleMultiplier;
 			}	
-			if(ballRect.intersects(paddle2Rect)) {
+			
+			if(ballRect.intersects(
+					paddle2Rect)) {
 				yPaddleCenter = paddle2.getY() + 34;	
 				angle = Math.PI - (yPaddleCenter - yBallCenter) * Math.PI / 180 * angleMultiplier;
 			}	
+			
 			ball.setAngle(angle);
 			ball.incrementMag();
 			ball.calculateVector();
 			if(ballRect.intersects(paddle1Rect))
 				ball.setX(61);
 			if(ballRect.intersects(paddle2Rect))
-				ball.setX(522);
+				ball.setX(722);
 		}
 	}
 	
 	public void setBall() {
 		
 		int[] angleMults = {0,3,4,7};
-		ball = new Ball(292, 341, 4 , ((int)(Math.random() * 45) + angleMults[(int)(Math.random() * 4)] * 45));
+		ball = new Ball(392, 342, 4 , ((int)(Math.random() * 45) + angleMults[(int)(Math.random() * 4)] * 45));
 	}
 	
 	public void startTimer() {

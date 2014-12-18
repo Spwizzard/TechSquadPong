@@ -11,8 +11,8 @@ public class Ball {
 	final private double degToRad = (Math.PI/180);
 	private double x, y, xRight, yBottom;
 	private Image ballImage;
-	private double XComp , YComp, angle;
-	private int magnitude, width, height;
+	private double XComp , YComp, angle, magnitude;
+	private int width, height;
 	public Ball(double X, double Y, int mag , double ang) {
 		x = X;
 		y = Y;
@@ -48,8 +48,8 @@ public class Ball {
 			x = 0;
 			magnitude = 0;
 		}
-		if(xRight > 600) {
-			x = 583;
+		if(xRight > 800) {
+			x = 783;
 			magnitude = 0;
 		}
 	}
@@ -70,7 +70,10 @@ public class Ball {
 	}
 	
 	public void incrementMag() {
-		magnitude++;
+		if(magnitude < 12) {
+			magnitude+=.5;
+		}
+		System.out.println(magnitude);
 	}
 	
 	public Image getImage() {
