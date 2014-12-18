@@ -95,8 +95,20 @@ public class Board extends JPanel implements ActionListener
 		paddle2.move();
 		ball.move();
 		checkCollisions();
+		if(ball.getX() <= 0) {
+			setBall();
+			player2NumberOfWins++;
+		}	
+		if(ball.getX() >= 783) {
+			setBall();
+			player1NumberOfWins++;
+		}	
 		repaint();
 		fps++;
+		
+		
+		
+		
 		//calculateFPS();
 	}
 
