@@ -49,7 +49,7 @@ public class Paddle {
 		}
 		
 		if(y < 100) {
-			y = 100;
+			y = 101;
 		}
 		if(y > 530) {
 			y = 530;
