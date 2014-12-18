@@ -159,9 +159,13 @@ public class Board extends JPanel implements ActionListener
 			
 			if(key == KeyEvent.VK_P) {
 				setBall();
+			}
+			if(key == KeyEvent.VK_R) {
+				setBall();
 				player1NumberOfWins = 0;
 				player2NumberOfWins = 0;
 			}
+			
 			if((key == KeyEvent.VK_ESCAPE)) {
 				System.exit(key);
 			}
