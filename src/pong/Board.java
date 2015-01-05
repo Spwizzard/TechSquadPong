@@ -72,7 +72,7 @@ public class Board extends JPanel implements ActionListener
 		Graphics2D g2d = (Graphics2D)g;
 		
 		g2d.setColor(Color.WHITE);
-		g2d.drawRect(0, 0, 800, 100);
+		g2d.drawRect(0, 0, 800, 99);
 		g2d.setFont(new Font("American Typewriter", Font.PLAIN, 100));
 		g2d.drawString("" + player1NumberOfWins, 80, 82);
 		g2d.drawString("" + player2NumberOfWins, 660, 82);
@@ -105,10 +105,6 @@ public class Board extends JPanel implements ActionListener
 		}	
 		repaint();
 		fps++;
-		
-		
-		
-		
 		//calculateFPS();
 	}
 

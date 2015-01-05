@@ -19,7 +19,7 @@ public class Ball {
 		xRight = x + 17;
 		yBottom = y + 17;
 		magnitude = mag;
-		ballImage = new ImageIcon("Ball.png").getImage();
+		ballImage = new ImageIcon("kappa.png").getImage();
 		width = ballImage.getWidth(null);
 		height = ballImage.getHeight(null);
 		setAngle((ang * degToRad));
@@ -43,14 +43,6 @@ public class Ball {
 			angle = -angle;
 			setAngle(angle);
 			calculateVector();
-		}
-		if(x < 0) {
-			x = 0;
-			magnitude = 0;
-		}
-		if(xRight > 800) {
-			x = 783;
-			magnitude = 0;
 		}
 	}
 	
