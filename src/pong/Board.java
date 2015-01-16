@@ -42,9 +42,9 @@ public class Board extends JPanel implements ActionListener
 		player2NumberOfWins = 0;	
 		fpsDate = new Date();
 		tickTimer = new Timer(16,this);
-		
-	}
 	
+	}
+	//comment
 	public void dimensionCheck() {
 		
 		f1 = (Base) SwingUtilities.getWindowAncestor(this);
